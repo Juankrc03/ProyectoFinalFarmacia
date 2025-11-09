@@ -55,8 +55,4 @@ Desktop.ini
 *.tar
 *.gz
 
-# === Proyecto de ejemplo ===
-# (deja tus carpetas reales aquí)
-data/
-third_party/
-src/
+
