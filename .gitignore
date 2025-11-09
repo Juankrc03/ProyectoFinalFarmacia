@@ -1,0 +1,62 @@
+# === Carpetas de Visual Studio ===
+.vs/
+Debug/
+Release/
+x64/
+x86/
+ipch/
+obj/
+bin/
+out/
+
+# === Archivos temporales y de configuración local ===
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.db-shm
+*.VC.db-wal
+*.vscode/
+*.opendb
+*.db
+*.db-shm
+*.db-wal
+
+# === Archivos de build o depuración ===
+*.pdb
+*.obj
+*.log
+*.tlog
+*.ilk
+*.idb
+*.aps
+*.pch
+*.cache
+*.res
+*.exe
+*.dll
+*.lib
+
+# === Archivos de sistema y backups ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.tmp
+*.bak
+*.old
+*.orig
+*.swp
+
+# === Archivos generados por otros programas ===
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# === Proyecto de ejemplo ===
+# (deja tus carpetas reales aquí)
+data/
+third_party/
+src/
