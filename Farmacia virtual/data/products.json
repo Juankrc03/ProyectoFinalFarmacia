@@ -25,5 +25,14 @@
     "precio": 700.0,
     "stock": 20,
     "stockInicial": 20
-  }
+  },
+  { 
+    "categoria": "Antibióticos",
+    "descripcion": "Antibacteriano de amplio espectro",
+    "id": 4,
+    "nombre": "Amoxicilina 500mg",
+    "precio": 850.0,
+    "stock": 25,
+    "stockInicial": 25
+  },
 ]
