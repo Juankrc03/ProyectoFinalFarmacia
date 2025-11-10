@@ -35,4 +35,13 @@
     "stock": 25,
     "stockInicial": 25
   },
+  {
+    "categoria": "Antialérgicos",
+    "descripcion": "Antihistamínico",
+    "id": 5,
+    "nombre": "Loratadina 10mg",
+    "precio": 400.0,
+    "stock": 30,
+    "stockInicial": 30
+  },
 ]
