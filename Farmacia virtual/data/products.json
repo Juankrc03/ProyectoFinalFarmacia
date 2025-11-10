@@ -44,4 +44,13 @@
     "stock": 30,
     "stockInicial": 30
   },
+  {
+    "categoria": "Antigripales",
+    "descripcion": "Tratamiento para síntomas de resfrío",
+    "id": 6,
+    "nombre": "Descongel Plus",
+    "precio": 650.0,
+    "stock": 18,
+    "stockInicial": 18
+  }
 ]
