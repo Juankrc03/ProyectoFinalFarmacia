@@ -142,3 +142,42 @@ void vaciarCarrito(json& cart) {
     saveCart(cart);
     std::cout << "Carrito vaciado.\n";
 }
+
+// ======= Checkout con reabastecimiento a 40 ===========
+void checkout(json& cart, json& prods) {
+    if (cart.empty()) { std::cout << "Carrito vacío.\n"; return; }
+
+    // Resumen
+    std::cout << "\n=== CHECKOUT PAGE ===\n";
+    verCarrito(cart, prods);
+
+    std::string metodo = readStr("Método de pago (Efectivo/Tarjeta/SINPE): ");
+    std::string conf = readStr("Confirmar compra? (s/n): ");
+    if (conf != "s" && conf != "S") { std::cout << "Cancelado.\n"; return; }
+
+    // Validación stock y rebaja
+    for (auto& it : cart) {
+        int pid = (int)it.value("productId", -1);
+        int cant = (int)it.value("cantidad", 0);
+        int idx = findProd(prods, pid);
+        if (idx < 0) { std::cout << "Producto no existe.\n"; return; }
+        int stock = (int)prods[idx].value("stock", 0);
+        if (cant > stock) { std::cout << "Sin stock suficiente para ID:" << pid << "\n"; return; }
+    }
+    for (auto& it : cart) {
+        int pid = (int)it.value("productId", -1);
+        int cant = (int)it.value("cantidad", 0);
+        int idx = findProd(prods, pid);
+        prods[idx]["stock"] = (int)prods[idx].value("stock", 0) - cant;
+        if ((int)prods[idx].value("stock", 0) <= 0) {
+            prods[idx]["stock"] = REABASTECER_A; // reabastece a 40 si quedó en 0
+        }
+    }
+    saveProducts(prods);
+
+    // Vaciar carrito
+    cart = json::array();
+    saveCart(cart);
+
+    std::cout << "Pago aceptado por " << metodo << ". ¡Gracias por su compra!\n";
+}
