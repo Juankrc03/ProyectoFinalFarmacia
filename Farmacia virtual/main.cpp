@@ -101,3 +101,44 @@ void verCarrito(const json& cart, const json& prods) {
 }
 
 
+// ================== Acciones ==========================
+void agregarAlCarrito(json& cart, const json& prods) {
+    int pid = readInt("ID del producto a agregar: ");
+    int idx = findProd(prods, pid);
+    if (idx < 0) { std::cout << "No existe ese producto.\n"; return; }
+
+    int stock = (int)prods[idx].value("stock", 0);
+    double precio = (double)prods[idx].value("precio", 0.0);
+    std::cout << "Producto: " << (std::string)prods[idx].value("nombre", "")
+        << " | stock: " << stock << " | precio: ₡" << precio << "\n";
+    int cant = readInt("Cantidad: ");
+    if (cant <= 0 || cant > stock) { std::cout << "Cantidad inválida.\n"; return; }
+
+    int cidx = findInCart(cart, pid);
+    if (cidx >= 0) {
+        int nueva = (int)cart[cidx].value("cantidad", 0) + cant;
+        if (nueva > stock) { std::cout << "Excede el stock.\n"; return; }
+        cart[cidx]["cantidad"] = nueva;
+        cart[cidx]["subTotal"] = nueva * precio;
+    }
+    else {
+        cart.push_back(json{ {"productId",pid},{"cantidad",cant},{"subTotal",cant * precio} });
+    }
+    saveCart(cart);
+    std::cout << "Agregado.\n";
+}
+
+void quitarDelCarrito(json& cart) {
+    int pid = readInt("ID del producto a quitar del carrito: ");
+    int cidx = findInCart(cart, pid);
+    if (cidx < 0) { std::cout << "Ese producto no está en el carrito.\n"; return; }
+    cart.erase(cart.begin() + cidx);
+    saveCart(cart);
+    std::cout << "Quitado.\n";
+}
+
+void vaciarCarrito(json& cart) {
+    cart = json::array();
+    saveCart(cart);
+    std::cout << "Carrito vaciado.\n";
+}
