@@ -14,7 +14,7 @@
     "id": 2,
     "nombre": "Ibuprofeno 400mg",
     "precio": 550.0,
-    "stock": 40,
+    "stock": 38,
     "stockInicial": 0
   },
   {
@@ -26,7 +26,7 @@
     "stock": 20,
     "stockInicial": 20
   },
-  { 
+  {
     "categoria": "Antibióticos",
     "descripcion": "Antibacteriano de amplio espectro",
     "id": 4,
